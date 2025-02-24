@@ -1,4 +1,5 @@
 import unittest
+from IPython.display import display
 import nbformat
 import os
 import numpy as np
@@ -16,6 +17,8 @@ class TestAssignmentNotebook(unittest.TestCase):
         
         cls.global_env = {}
         
+        from IPython.display import display
+        cls.global_env['display'] = display
         for cell in nb.cells:
             if cell.cell_type == "code":
                 exec(cell.source, cls.global_env)
